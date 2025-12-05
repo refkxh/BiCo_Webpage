@@ -1,0 +1,2995 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Primary Meta Tags -->
+    <!-- TODO: Replace with your paper title and author names -->
+    <meta
+      name="title"
+      content="Composing Concepts from Images and Videos via Concept-prompt Binding - Xianghao Kong et al."
+    />
+    <!-- TODO: Write a compelling 150-160 character description of your research -->
+    <meta
+      name="description"
+      content="We introduce Bind & Compose, a one-shot method that enables flexible visual concept composition by binding visual concepts with corresponding prompt tokens and composing the target prompt with bound tokens from various sources."
+    />
+    <!-- TODO: Add 5-10 relevant keywords for your research area -->
+    <meta
+      name="keywords"
+      content="concept composition, video personalization, diffusion models, computer vision, AI"
+    />
+    <!-- TODO: List all authors -->
+    <meta
+      name="author"
+      content="Xianghao Kong, Zeyu Zhang, Yuwei Guo, Zhuoran Zhao, Songchun Zhang, Anyi Rao"
+    />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="English" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article" />
+    <!-- TODO: Replace with your institution or lab name -->
+    <meta property="og:site_name" content="MMLAB@HKUST" />
+    <!-- TODO: Same as paper title above -->
+    <meta
+      property="og:title"
+      content="Composing Concepts from Images and Videos via Concept-prompt Binding"
+    />
+    <!-- TODO: Same as description above -->
+    <meta
+      property="og:description"
+      content="We introduce Bind & Compose, a one-shot method that enables flexible visual concept composition by binding visual concepts with corresponding prompt tokens and composing the target prompt with bound tokens from various sources."
+    />
+    <!-- TODO: Replace with your actual website URL -->
+    <meta property="og:url" content="https://refkxh.github.io/bico_webpage" />
+    <!-- TODO: Create a 1200x630px preview image and update path -->
+    <meta
+      property="og:image"
+      content="https://refkxh.github.io/bico_webpage/static/images/teaser/teaser.jpg"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Composing Concepts from Images and Videos via Concept-prompt Binding - Research Preview"
+    />
+    <meta
+      property="article:published_time"
+      content="2025-12-01T00:00:00.000Z"
+    />
+    <meta
+      property="article:author"
+      content="Xianghao Kong, Zeyu Zhang, Yuwei Guo, Zhuoran Zhao, Songchun Zhang, Anyi Rao"
+    />
+    <meta property="article:section" content="Research" />
+    <meta property="article:tag" content="concept composition" />
+    <meta property="article:tag" content="video personalization" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <!-- TODO: Replace with your lab/institution Twitter handle -->
+    <meta name="twitter:site" content="@YOUR_TWITTER_HANDLE" />
+    <!-- TODO: Replace with first author's Twitter handle -->
+    <meta name="twitter:creator" content="@refkxh" />
+    <!-- TODO: Same as paper title above -->
+    <meta
+      name="twitter:title"
+      content="Composing Concepts from Images and Videos via Concept-prompt Binding"
+    />
+    <!-- TODO: Same as description above -->
+    <meta
+      name="twitter:description"
+      content="We introduce Bind & Compose, a one-shot method that enables flexible visual concept composition by binding visual concepts with corresponding prompt tokens and composing the target prompt with bound tokens from various sources."
+    />
+    <!-- TODO: Same as social preview image above -->
+    <meta
+      name="twitter:image"
+      content="https://refkxh.github.io/bico_webpage/static/images/teaser/teaser.jpg"
+    />
+    <meta
+      name="twitter:image:alt"
+      content="Composing Concepts from Images and Videos via Concept-prompt Binding - Research Preview"
+    />
+
+    <!-- Academic/Research Specific -->
+    <meta
+      name="citation_title"
+      content="Composing Concepts from Images and Videos via Concept-prompt Binding"
+    />
+    <meta name="citation_author" content="Kong, Xianghao" />
+    <meta name="citation_author" content="Zhang, Zeyu" />
+    <meta name="citation_publication_date" content="2025" />
+    <meta name="citation_conference_title" content="arXiv" />
+    <meta
+      name="citation_pdf_url"
+      content="https://refkxh.github.io/bico_webpage/static/pdfs/paper.pdf"
+    />
+
+    <!-- Additional SEO -->
+    <meta name="theme-color" content="#2563eb" />
+    <meta name="msapplication-TileColor" content="#2563eb" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://ajax.googleapis.com" />
+    <link rel="preconnect" href="https://documentcloud.adobe.com" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+
+    <!-- TODO: Replace with your paper title and authors -->
+    <title>
+      Composing Concepts from Images and Videos via Concept-prompt Binding -
+      Xianghao Kong et al. | Academic Research
+    </title>
+
+    <!-- Favicon and App Icons -->
+    <link rel="icon" type="image/x-icon" href="static/images/favicon.ico" />
+    <link rel="apple-touch-icon" href="static/images/favicon.ico" />
+
+    <!-- Critical CSS - Load synchronously -->
+    <link rel="stylesheet" href="static/css/bulma.min.css" />
+    <link rel="stylesheet" href="static/css/index.css" />
+
+    <!-- Non-critical CSS - Load asynchronously -->
+    <link
+      rel="preload"
+      href="static/css/bulma-carousel.min.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <link
+      rel="preload"
+      href="static/css/bulma-slider.min.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <link
+      rel="preload"
+      href="static/css/fontawesome.all.min.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+
+    <!-- Fallback for browsers that don't support preload -->
+    <noscript>
+      <link rel="stylesheet" href="static/css/bulma-carousel.min.css" />
+      <link rel="stylesheet" href="static/css/bulma-slider.min.css" />
+      <link rel="stylesheet" href="static/css/fontawesome.all.min.css" />
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css"
+      />
+    </noscript>
+
+    <!-- Fonts - Optimized loading -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Defer non-critical JavaScript -->
+    <script
+      defer
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+    ></script>
+    <script
+      defer
+      src="https://documentcloud.adobe.com/view-sdk/main.js"
+    ></script>
+    <script defer src="static/js/fontawesome.all.min.js"></script>
+    <script defer src="static/js/bulma-carousel.min.js"></script>
+    <script defer src="static/js/bulma-slider.min.js"></script>
+    <script defer src="static/js/index.js"></script>
+
+    <!-- Structured Data for Academic Papers -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ScholarlyArticle",
+        "headline": "Composing Concepts from Images and Videos via Concept-prompt Binding",
+        "description": "We introduce Bind & Compose, a one-shot method that enables flexible visual concept composition by binding visual concepts with corresponding prompt tokens and composing the target prompt with bound tokens from various sources.",
+        "author": [
+          {
+            "@type": "Person",
+            "name": "Xianghao Kong",
+            "affiliation": {
+              "@type": "Organization",
+              "name": "HKUST"
+            }
+          },
+          {
+            "@type": "Person",
+            "name": "Zeyu Zhang",
+            "affiliation": {
+              "@type": "Organization",
+              "name": "HKUST"
+            }
+          },
+          {
+            "@type": "Person",
+            "name": "Yuwei Guo",
+            "affiliation": {
+              "@type": "Organization",
+              "name": "CUHK"
+            }
+          },
+          {
+            "@type": "Person",
+            "name": "Zhuoran Zhao",
+            "affiliation": {
+              "@type": "Organization",
+              "name": "HKUST, HKUST(GZ)"
+            }
+          },
+          {
+            "@type": "Person",
+            "name": "Songchun Zhang",
+            "affiliation": {
+              "@type": "Organization",
+              "name": "HKUST"
+            }
+          },
+          {
+            "@type": "Person",
+            "name": "Anyi Rao",
+            "affiliation": {
+              "@type": "Organization",
+              "name": "HKUST"
+            }
+          }
+        ],
+        "datePublished": "2025-12-01",
+        "publisher": {
+          "@type": "Organization",
+          "name": "arXiv Preprint"
+        },
+        "url": "https://refkxh.github.io/bico_webpage",
+        "image": "https://refkxh.github.io/bico_webpage/static/images/teaser/teaser.png",
+        "keywords": [
+          "concept composition",
+          "video personalization",
+          "diffusion models",
+          "machine learning",
+          "computer vision"
+        ],
+        "abstract": "Visual concept composition, which aims to integrate different elements from images and videos into a single, coherent visual output, still falls short in accurately extracting complex concepts from visual inputs and flexibly combining concepts from both images and videos. We introduce Bind & Compose, a one-shot method that enables flexible visual concept composition by binding visual concepts with corresponding prompt tokens and composing the target prompt with bound tokens from various sources. It adopts a hierarchical binder structure for cross-attention conditioning in Diffusion Transformers to encode visual concepts into corresponding prompt tokens for accurate decomposition of complex visual concepts. To improve concept-token binding accuracy, we design a Diversify-and-Absorb Mechanism that uses an extra absorbent token to eliminate the impact of concept-irrelevant details when training with diversified prompts. To enhance the compatibility between image and video concepts, we present a Temporal Disentanglement Strategy that decouples the training process of video concepts into two stages with a dual-branch binder structure for temporal modeling. Evaluations demonstrate that our method achieves superior concept consistency, prompt fidelity, and motion quality over existing approaches, opening up new possibilities for visual creativity.",
+        "citation": "BIBTEX_CITATION_HERE",
+        "isAccessibleForFree": true,
+        "license": "https://creativecommons.org/licenses/by/4.0/",
+        "mainEntity": {
+          "@type": "WebPage",
+          "@id": "https://refkxh.github.io/bico_webpage"
+        },
+        "about": [
+          {
+            "@type": "Thing",
+            "name": "computer vision"
+          },
+          {
+            "@type": "Thing",
+            "name": "generative AI"
+          }
+        ]
+      }
+    </script>
+
+    <!-- Website/Organization Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "MMLAB@HKUST",
+        "url": "https://mmlab-hkust.github.io/",
+        "logo": "https://YOUR_DOMAIN.com/static/images/favicon.ico",
+        "sameAs": [
+          "https://twitter.com/YOUR_TWITTER_HANDLE",
+          "https://github.com/YOUR_GITHUB_USERNAME"
+        ]
+      }
+    </script>
+  </head>
+
+  <body>
+    <!-- Scroll to Top Button -->
+    <button
+      class="scroll-to-top"
+      onclick="scrollToTop()"
+      title="Scroll to top"
+      aria-label="Scroll to top"
+    >
+      <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- More Works Dropdown - Deleted -->
+
+    <main id="main-content">
+      <section class="hero">
+        <div class="hero-body">
+          <div class="container is-max-desktop">
+            <div class="columns is-centered">
+              <div class="column has-text-centered">
+                <!-- TODO: Replace with your paper title -->
+                <h1 class="title is-1 publication-title">
+                  Composing Concepts from Images and Videos via Concept-prompt
+                  Binding
+                </h1>
+                <div class="is-size-5 publication-authors">
+                  <!-- TODO: Replace with your paper authors and their personal links -->
+                  <span class="author-block">
+                    <!-- <a href="FIRST AUTHOR PERSONAL LINK" target="_blank">First Author</a><sup>*</sup>,</span>
+                <span class="author-block">
+                  <a href="SECOND AUTHOR PERSONAL LINK" target="_blank">Second Author</a><sup>*</sup>,</span> -->
+                    <span class="author-block">
+                      <a href="https://refkxh.github.io/" target="_blank"
+                        >Xianghao Kong</a
+                      >
+                      <sup>1</sup>
+                    </span>
+                    <span class="author-block">
+                      <a
+                        href="https://scholar.google.com/citations?user=b5fSeOsAAAAJ&hl=zh-CN"
+                        target="_blank"
+                        >Zeyu Zhang</a
+                      >
+                      <sup>1</sup>
+                    </span>
+                    <span class="author-block">
+                      <a href="https://guoyww.github.io/" target="_blank"
+                        >Yuwei Guo</a
+                      >
+                      <sup>2</sup>
+                    </span>
+                    <span class="author-block">
+                      <a href="https://alicezrzhao.github.io/" target="_blank"
+                        >Zhuoran Zhao</a
+                      >
+                      <sup>1, 3</sup>
+                    </span>
+                    <span class="author-block">
+                      <a href="https://franklinz233.github.io/" target="_blank"
+                        >Songchun Zhang</a
+                      >
+                      <sup>1</sup>
+                    </span>
+                    <span class="author-block">
+                      <a href="https://anyirao.com/" target="_blank"
+                        >Anyi Rao</a
+                      >
+                      <sup>1</sup>
+                    </span>
+
+                    <div class="is-size-5 publication-authors">
+                      <!-- TODO: Replace with your institution and conference/journal info -->
+                      <span class="author-block">
+                        <sup>1</sup> HKUST &nbsp; <sup>2</sup> CUHK &nbsp;
+                        <sup>3</sup> HKUST(GZ)<br />arXiv Preprint
+                      </span>
+                      <!-- TODO: Remove this line if no equal contribution -->
+                      <!-- <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span> -->
+                    </div>
+
+                    <div class="column has-text-centered">
+                      <div class="publication-links">
+                        <!-- TODO: Update paper link -->
+                        <span class="link-block">
+                          <a
+                            href="static/pdfs/paper.pdf"
+                            target="_blank"
+                            class="external-link button is-normal is-rounded is-dark"
+                          >
+                            <span class="icon">
+                              <i class="fas fa-file-pdf"></i>
+                            </span>
+                            <span>Paper</span>
+                          </a>
+                        </span>
+
+                        <!-- TODO: Replace with your GitHub repository URL -->
+                        <span class="link-block">
+                          <a
+                            href="https://github.com/refkxh/bico"
+                            target="_blank"
+                            class="external-link button is-normal is-rounded is-dark"
+                          >
+                            <span class="icon">
+                              <i class="fab fa-github"></i>
+                            </span>
+                            <span>Code</span>
+                          </a>
+                        </span>
+
+                        <!-- TODO: Update with your arXiv paper ID -->
+                        <span class="link-block">
+                          <a
+                            href="https://arxiv.org/abs/<ARXIV PAPER ID>"
+                            target="_blank"
+                            class="external-link button is-normal is-rounded is-dark"
+                          >
+                            <span class="icon">
+                              <i class="ai ai-arxiv"></i>
+                            </span>
+                            <span>arXiv</span>
+                          </a>
+                        </span>
+                      </div>
+                    </div>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Teaser video-->
+      <section class="hero teaser">
+        <div class="hero-body" style="padding-top: 0px">
+          <div class="container">
+            <div class="columns is-centered has-text-centered">
+              <div class="column is-four-fifths">
+                <!-- Example 1: 2 Input Images + 1 Input Video + 1 Output Video -->
+                <div class="section">
+                  <!-- Input Image 1 -->
+                  <div class="section-image">
+                    <div class="caption" style="margin-bottom: 8px">
+                      <small><strong>Input Image 1</strong></small>
+                    </div>
+                    <div class="publication-video">
+                      <!-- TODO: Replace with your first input image -->
+                      <img
+                        src="static/images/teaser/minecraft_1.jpeg"
+                        alt="Input Image 1"
+                      />
+                    </div>
+                    <div class="prompt-text" style="margin-top: 8px">
+                      <strong>Image Prompt:</strong> "<span
+                        class="prompt-highlight-blue"
+                        >A vibrant Minecraft landscape</span
+                      >
+                      featuring a flowing river, lush trees, a cascading
+                      waterfall, sheep grazing, and blocky clouds under a bright
+                      blue sky."
+                    </div>
+                  </div>
+                  <!-- Input Image 2 -->
+                  <div class="section-image">
+                    <div class="caption" style="margin-bottom: 8px">
+                      <small><strong>Input Image 2</strong></small>
+                    </div>
+                    <div class="publication-video">
+                      <!-- TODO: Replace with your second input image -->
+                      <img
+                        src="static/images/teaser/volcano_3.jpg"
+                        alt="Input Image 2"
+                      />
+                    </div>
+                    <div class="prompt-text" style="margin-top: 8px">
+                      <strong>Image Prompt:</strong> "<span
+                        class="prompt-highlight-red"
+                        >A dynamic volcano erupts, spewing vibrant red lava and
+                        creating a dramatic ash cloud</span
+                      >
+                      against a serene blue sky, with molten lava pooling on the
+                      black rocks below."
+                    </div>
+                  </div>
+                  <!-- Input Video -->
+                  <div class="section-image">
+                    <div class="caption" style="margin-bottom: 8px">
+                      <small><strong>Input Video</strong></small>
+                    </div>
+                    <div class="publication-video">
+                      <!-- TODO: Replace with your input video -->
+                      <video
+                        poster=""
+                        id="teaser-input-video1"
+                        autoplay
+                        controls
+                        muted
+                        loop
+                        height="100%"
+                        preload="metadata"
+                      >
+                        <source
+                          src="static/videos/butterfly_480p.mp4"
+                          type="video/mp4"
+                        />
+                      </video>
+                    </div>
+                    <div class="prompt-text" style="margin-top: 8px">
+                      <strong>Video Prompt:</strong> "<span
+                        class="prompt-highlight-orange"
+                        >A beautiful butterfly rests on a vibrant yellow flower,
+                        flapping its wings</span
+                      >
+                      softly against a backdrop of lush green leaves."
+                    </div>
+                  </div>
+                  <!-- Output Video (Composed) -->
+                  <div class="section-image">
+                    <div class="caption" style="margin-bottom: 8px">
+                      <small><strong>BiCo (Ours)</strong></small>
+                    </div>
+                    <div class="publication-video">
+                      <!-- TODO: Replace with your composed result video -->
+                      <video
+                        poster=""
+                        id="teaser-output-video1"
+                        autoplay
+                        controls
+                        muted
+                        loop
+                        height="100%"
+                        preload="metadata"
+                      >
+                        <source
+                          src="static/videos/minecraft_butterfly1_volcano3_1.1.mp4"
+                          type="video/mp4"
+                        />
+                      </video>
+                    </div>
+                    <div
+                      class="prompt-text"
+                      style="margin-top: 8px; border-left-color: #9333ea"
+                    >
+                      <strong style="color: #9333ea">Composed Prompt:</strong>
+                      "<span class="prompt-highlight-orange"
+                        >A beautiful butterfly rests on a vibrant yellow flower,
+                        flapping its wings</span
+                      >
+                      surrounded by
+                      <span class="prompt-highlight-blue"
+                        >a vibrant Minecraft landscape</span
+                      >
+                      featuring
+                      <span class="prompt-highlight-red"
+                        >a dynamic volcano which erupts, spewing vibrant red
+                        lava and creating a dramatic ash cloud against a serene
+                        blue sky, with molten lava pooling on the black rocks
+                        below</span
+                      >."
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Example 2: 1 Input Image + 1 Input Video + 1 Composed Video -->
+                <div class="section">
+                  <!-- Input Image -->
+                  <div class="section-image">
+                    <div class="caption" style="margin-bottom: 8px">
+                      <small><strong>Input Image</strong></small>
+                    </div>
+                    <div class="publication-video">
+                      <!-- TODO: Replace with your input image -->
+                      <img
+                        src="static/images/teaser/dog_bige_1.jpg"
+                        alt="Input Image"
+                      />
+                    </div>
+                    <div class="prompt-text" style="margin-top: 8px">
+                      <strong>Image Prompt:</strong> "<span
+                        class="prompt-highlight-orange"
+                        >A beagle dog wearing a collar</span
+                      >
+                      stands on a pathway surrounded by grass and grassland."
+                    </div>
+                  </div>
+                  <!-- Input Video -->
+                  <div class="section-image">
+                    <div class="caption" style="margin-bottom: 8px">
+                      <small><strong>Input Video</strong></small>
+                    </div>
+                    <div class="publication-video">
+                      <!-- TODO: Replace with your input video -->
+                      <video
+                        poster=""
+                        id="teaser-input-video2"
+                        autoplay
+                        controls
+                        muted
+                        loop
+                        height="100%"
+                        preload="metadata"
+                      >
+                        <source
+                          src="static/videos/bartender.mp4"
+                          type="video/mp4"
+                        />
+                      </video>
+                    </div>
+                    <div class="prompt-text" style="margin-top: 8px">
+                      <strong>Video Prompt:</strong> "A bartender in a black
+                      shirt skillfully
+                      <span class="prompt-highlight-blue"
+                        >mixes a drink in a shaker at a bar, surrounded by a
+                        cityscape visible through a large window</span
+                      >."
+                    </div>
+                  </div>
+                  <!-- Composed Video -->
+                  <div class="section-image">
+                    <div class="caption" style="margin-bottom: 8px">
+                      <small><strong>BiCo (Ours)</strong></small>
+                    </div>
+                    <div class="publication-video">
+                      <!-- TODO: Replace with your composed result video -->
+                      <video
+                        poster=""
+                        id="teaser-composed-video2"
+                        autoplay
+                        controls
+                        muted
+                        loop
+                        height="100%"
+                        preload="metadata"
+                      >
+                        <source
+                          src="static/videos/beagle_bar_1.2.mp4"
+                          type="video/mp4"
+                        />
+                      </video>
+                    </div>
+                    <div
+                      class="prompt-text"
+                      style="margin-top: 8px; border-left-color: #9333ea"
+                    >
+                      <strong style="color: #9333ea">Composed Prompt:</strong>
+                      "<span class="prompt-highlight-orange"
+                        >A beagle dog wearing a collar</span
+                      >
+                      <span class="prompt-highlight-blue"
+                        >mixes a drink vigorously using a shaker</span
+                      >
+                      with its dog's paws
+                      <span class="prompt-highlight-blue"
+                        >at a bar, surrounded by a cityscape visible through a
+                        large window</span
+                      >."
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Divider before overview -->
+                <hr class="comparison-divider" />
+
+                <!-- Overview Image -->
+                <div style="margin-top: 3rem; text-align: center">
+                  <img
+                    src="static/images/teaser/overview.jpg"
+                    alt="overview"
+                    style="
+                      max-width: 100%;
+                      height: auto;
+                      border-radius: 8px;
+                      box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+                    "
+                  />
+                </div>
+
+                <!-- Description -->
+                <h2 class="subtitle has-text-centered" style="margin-top: 2rem">
+                  We introduce Bind & Compose (BiCo), a one-shot method that
+                  enables flexible visual concept composition by binding visual
+                  concepts with the corresponding prompt tokens and composing
+                  the target prompt with bound tokens from various sources.
+                </h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- End teaser video -->
+
+      <!-- Paper abstract -->
+      <section class="section hero is-light">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered has-text-centered">
+            <div class="column is-four-fifths">
+              <h2 class="title is-3" style="padding-top: 1rem">Abstract</h2>
+              <div class="content has-text-justified">
+                <!-- TODO: Replace with your paper abstract -->
+                <p>
+                  Visual concept composition, which aims to integrate different
+                  elements from images and videos into a single, coherent visual
+                  output, still falls short in accurately extracting complex
+                  concepts from visual inputs and flexibly combining concepts
+                  from both images and videos. We introduce Bind & Compose, a
+                  one-shot method that enables flexible visual concept
+                  composition by binding visual concepts with corresponding
+                  prompt tokens and composing the target prompt with bound
+                  tokens from various sources. It adopts a hierarchical binder
+                  structure for cross-attention conditioning in Diffusion
+                  Transformers to encode visual concepts into corresponding
+                  prompt tokens for accurate decomposition of complex visual
+                  concepts. To improve concept-token binding accuracy, we design
+                  a Diversify-and-Absorb Mechanism that uses an extra absorbent
+                  token to eliminate the impact of concept-irrelevant details
+                  when training with diversified prompts. To enhance the
+                  compatibility between image and video concepts, we present a
+                  Temporal Disentanglement Strategy that decouples the training
+                  process of video concepts into two stages with a dual-branch
+                  binder structure for temporal modeling. Evaluations
+                  demonstrate that our method achieves superior concept
+                  consistency, prompt fidelity, and motion quality over existing
+                  approaches, opening up new possibilities for visual
+                  creativity.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- End paper abstract -->
+
+      <!-- Qualitative -->
+      <section class="hero is-small">
+        <div class="hero-body">
+          <div class="container">
+            <!-- Paper video. -->
+            <h2 class="title is-3">Qualitative Results</h2>
+            <div class="columns is-centered has-text-centered">
+              <div class="column is-four-fifths">
+                <!-- Row 1 -->
+                <div class="section">
+                  <div class="section-image">
+                    <div class="caption" style="margin-bottom: 8px">
+                      <small><strong>Input Image</strong></small>
+                    </div>
+                    <div class="publication-video">
+                      <img
+                        src="static/qualitative_results/dog1_480p.jpg"
+                        alt="Keyframe Manipulation"
+                      />
+                    </div>
+                    <div class="prompt-text" style="margin-top: 8px">
+                      <strong>Image Prompt:</strong> "<span
+                        class="prompt-highlight-green"
+                        >A happy Akita dog</span
+                      >
+                      with its tongue out, stands in a grassy area with flowers
+                      and leaves, bathed in sunlight."
+                    </div>
+                  </div>
+                  <div class="section-image">
+                    <div class="caption" style="margin-bottom: 8px">
+                      <small><strong>Input Video</strong></small>
+                    </div>
+                    <div class="publication-video">
+                      <video
+                        poster=""
+                        id="qualitative1-input"
+                        autoplay
+                        controls
+                        muted
+                        loop
+                        height="100%"
+                        preload="metadata"
+                      >
+                        <!-- TODO: Add your video file path here -->
+                        <source
+                          src="static/qualitative_results/play_game_2_81.mp4"
+                          type="video/mp4"
+                        />
+                      </video>
+                    </div>
+                    <div class="prompt-text" style="margin-top: 8px">
+                      <strong>Video Prompt:</strong> "A man
+                      <span class="prompt-highlight-orange"
+                        >in a red plaid shirt and black headphones raises</span
+                      >
+                      his arms
+                      <span class="prompt-highlight-orange">
+                        excitedly while holding a gaming controller, deeply
+                        engaged in a game in a cozy living room setting.</span
+                      >"
+                    </div>
+                  </div>
+                  <div class="section-image">
+                    <div class="caption" style="margin-bottom: 8px">
+                      <small><strong>BiCo (Ours)</strong></small>
+                    </div>
+                    <div class="publication-video">
+                      <video
+                        poster=""
+                        id="qualitative1-output"
+                        autoplay
+                        controls
+                        muted
+                        loop
+                        height="100%"
+                        preload="metadata"
+                      >
+                        <!-- TODO: Add your video file path here -->
+                        <source
+                          src="static/qualitative_results/dog_game2_1.1.mp4"
+                          type="video/mp4"
+                        />
+                      </video>
+                    </div>
+                    <div
+                      class="prompt-text"
+                      style="margin-top: 8px; border-left-color: #9333ea"
+                    >
+                      <strong style="color: #9333ea">Composed Prompt:</strong>
+                      "<span class="prompt-highlight-green"
+                        >A happy Akita dog</span
+                      >
+                      <span class="prompt-highlight-orange"
+                        >in a red plaid shirt and black headphones raises</span
+                      >
+                      its paws
+                      <span class="prompt-highlight-orange">
+                        excitedly while holding a gaming controller, deeply
+                        engaged in a game in a cozy living room setting.</span
+                      >"
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Row 2 -->
+                <div class="section">
+                  <div class="section-image">
+                    <div class="caption" style="margin-bottom: 8px">
+                      <small><strong>Input Image 1</strong></small>
+                    </div>
+                    <div class="publication-video image-contain-wrapper">
+                      <img
+                        class="image-contain"
+                        src="static/qualitative_results/husky2_480p.jpg"
+                        alt="Keyframe Manipulation"
+                      />
+                    </div>
+                    <div class="prompt-text" style="margin-top: 8px">
+                      <strong>Image Prompt:</strong> "<span
+                        class="prompt-highlight-green"
+                        >A husky dog with striking blue eyes</span
+                      >
+                      stands in the snow, gazing directly at the camera."
+                    </div>
+                  </div>
+                  <div class="section-image">
+                    <div class="caption" style="margin-bottom: 8px">
+                      <small><strong>Input Image 2</strong></small>
+                    </div>
+                    <div class="publication-video image-contain-wrapper">
+                      <img
+                        class="image-contain"
+                        src="static/qualitative_results/doberman1.jpeg"
+                        alt="Keyframe Manipulation"
+                      />
+                    </div>
+                    <div class="prompt-text" style="margin-top: 8px">
+                      <strong>Image Prompt:</strong> "<span
+                        class="prompt-highlight-blue"
+                        >A poised black Doberman Pinscher</span
+                      >
+                      stands on a wooden floor against a backdrop of vibrant
+                      green foliage."
+                    </div>
+                  </div>
+                  <div class="section-image">
+                    <div class="caption" style="margin-bottom: 8px">
+                      <small><strong>Input Video</strong></small>
+                    </div>
+                    <div class="publication-video">
+                      <video
+                        poster=""
+                        id="qualitative2-input2"
+                        autoplay
+                        controls
+                        muted
+                        loop
+                        height="100%"
+                        preload="metadata"
+                      >
+                        <!-- TODO: Add your video file path here -->
+                        <source
+                          src="static/qualitative_results/wjd1.mp4"
+                          type="video/mp4"
+                        />
+                      </video>
+                    </div>
+                    <div class="prompt-text" style="margin-top: 8px">
+                      <strong>Video Prompt:</strong> "A man in a suit
+                      <span class="prompt-highlight-orange"
+                        >stands still on a rooftop</span
+                      >, looking around as another person
+                      <span class="prompt-highlight-orange"
+                        >appears behind him, with a cityscape and blue sky
+                        dotted with clouds in the background.</span
+                      >"
+                    </div>
+                  </div>
+                  <div class="section-image">
+                    <div class="caption" style="margin-bottom: 8px">
+                      <small><strong>BiCo (Ours)</strong></small>
+                    </div>
+                    <div class="publication-video">
+                      <video
+                        poster=""
+                        id="qualitative2-output"
+                        autoplay
+                        controls
+                        muted
+                        loop
+                        height="100%"
+                        preload="metadata"
+                      >
+                        <!-- TODO: Add your video file path here -->
+                        <source
+                          src="static/qualitative_results/wujianddao1_1.2.mp4"
+                          type="video/mp4"
+                        />
+                      </video>
+                    </div>
+                    <div
+                      class="prompt-text"
+                      style="margin-top: 8px; border-left-color: #9333ea"
+                    >
+                      <strong style="color: #9333ea">Composed Prompt:</strong>
+                      "<span class="prompt-highlight-green"
+                        >A husky dog with striking blue eyes</span
+                      >
+                      <span class="prompt-highlight-orange"
+                        >stands still on a rooftop</span
+                      >, as
+                      <span class="prompt-highlight-blue"
+                        >a poised black Doberman Pinscher</span
+                      >
+                      <span class="prompt-highlight-orange"
+                        >appears behind, with a cityscape and blue sky dotted
+                        with clouds in the background.</span
+                      >"
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Row 3 -->
+                <div class="section">
+                  <div class="section-image">
+                    <div class="caption" style="margin-bottom: 8px">
+                      <small><strong>Input Image</strong></small>
+                    </div>
+                    <div class="publication-video image-contain-wrapper">
+                      <img
+                        class="image-contain"
+                        src="static/qualitative_results/xigaodi.jpeg"
+                        alt="Input Image"
+                      />
+                    </div>
+                    <div class="prompt-text" style="margin-top: 8px">
+                      <strong>Image Prompt:</strong> "<span
+                        class="prompt-highlight-green"
+                        >A fluffy white dog</span
+                      >
+                      curled up on soft, white bedding in a sunlit room."
+                    </div>
+                  </div>
+                  <div class="section-image">
+                    <div class="caption" style="margin-bottom: 8px">
+                      <small><strong>Input Video</strong></small>
+                    </div>
+                    <div class="publication-video">
+                      <video
+                        poster=""
+                        id="qualitative3-input"
+                        autoplay
+                        controls
+                        muted
+                        loop
+                        height="100%"
+                        preload="metadata"
+                      >
+                        <!-- TODO: Add your video file path here -->
+                        <source
+                          src="static/qualitative_results/actress_1.mp4"
+                          type="video/mp4"
+                        />
+                      </video>
+                    </div>
+                    <div class="prompt-text" style="margin-top: 8px">
+                      <strong>Video Prompt:</strong> "A woman
+                      <span class="prompt-highlight-orange"
+                        >in a red dress sits still</span
+                      >, her tattooed arm visible, as she
+                      <span class="prompt-highlight-orange"
+                        >poses for a camera on a tripod under softbox lighting
+                        in a living room setting.</span
+                      >"
+                    </div>
+                  </div>
+                  <div class="section-image">
+                    <div class="caption" style="margin-bottom: 8px">
+                      <small><strong>BiCo (Ours)</strong></small>
+                    </div>
+                    <div class="publication-video">
+                      <video
+                        poster=""
+                        id="qualitative3-output"
+                        autoplay
+                        controls
+                        muted
+                        loop
+                        height="100%"
+                        preload="metadata"
+                      >
+                        <!-- TODO: Add your video file path here -->
+                        <source
+                          src="static/qualitative_results/actress1_1.0.mp4"
+                          type="video/mp4"
+                        />
+                      </video>
+                    </div>
+                    <div
+                      class="prompt-text"
+                      style="margin-top: 8px; border-left-color: #9333ea"
+                    >
+                      <strong style="color: #9333ea">Composed Prompt:</strong>
+                      "<span class="prompt-highlight-green"
+                        >A fluffy white dog</span
+                      >
+                      <span class="prompt-highlight-orange">
+                        in a red dress sits still</span
+                      >, as it
+                      <span class="prompt-highlight-orange"
+                        >poses for a camera on a tripod under softbox lighting
+                        in a living room setting.</span
+                      >"
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Row 4 -->
+                <div class="section">
+                  <div class="section-image">
+                    <div class="caption" style="margin-bottom: 8px">
+                      <small><strong>Input Image</strong></small>
+                    </div>
+                    <div class="publication-video image-contain-wrapper">
+                      <img
+                        class="image-contain"
+                        src="static/qualitative_results/demu1.jpeg"
+                        alt="Input Image"
+                      />
+                    </div>
+                    <div class="prompt-text" style="margin-top: 8px">
+                      <strong>Image Prompt:</strong> "A close-up of a
+                      <span class="prompt-highlight-green"
+                        >German Shepherd dog</span
+                      >
+                      outdoors, sitting on grass under natural light."
+                    </div>
+                  </div>
+                  <div class="section-image">
+                    <div class="caption" style="margin-bottom: 8px">
+                      <small><strong>Input Video</strong></small>
+                    </div>
+                    <div class="publication-video">
+                      <video
+                        poster=""
+                        id="qualitative4-input"
+                        autoplay
+                        controls
+                        muted
+                        loop
+                        height="100%"
+                        preload="metadata"
+                      >
+                        <!-- TODO: Add your video file path here -->
+                        <source
+                          src="static/qualitative_results/coach_1.mp4"
+                          type="video/mp4"
+                        />
+                      </video>
+                    </div>
+                    <div class="prompt-text" style="margin-top: 8px">
+                      <strong>Video Prompt:</strong> "A focused
+                      <span class="prompt-highlight-orange"
+                        >individual practices boxing in a gym, punching a heavy
+                        bag with intensity while the camera follows their
+                        movements.</span
+                      >"
+                    </div>
+                  </div>
+                  <div class="section-image">
+                    <div class="caption" style="margin-bottom: 8px">
+                      <small><strong>BiCo (Ours)</strong></small>
+                    </div>
+                    <div class="publication-video">
+                      <video
+                        poster=""
+                        id="qualitative4-output"
+                        autoplay
+                        controls
+                        muted
+                        loop
+                        height="100%"
+                        preload="metadata"
+                      >
+                        <!-- TODO: Add your video file path here -->
+                        <source
+                          src="static/qualitative_results/boxing1_1.0.mp4"
+                          type="video/mp4"
+                        />
+                      </video>
+                    </div>
+                    <div
+                      class="prompt-text"
+                      style="margin-top: 8px; border-left-color: #9333ea"
+                    >
+                      <strong style="color: #9333ea">Composed Prompt:</strong>
+                      "<span class="prompt-highlight-green"
+                        >A German Shepherd dog</span
+                      >
+                      <span class="prompt-highlight-orange"
+                        >individual practices boxing in a gym, punching a heavy
+                        bag with intensity while the camera follows their
+                        movements.</span
+                      >"
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Row 5 -->
+                <div class="section">
+                  <div class="section-image">
+                    <div class="caption" style="margin-bottom: 8px">
+                      <small><strong>Input Image</strong></small>
+                    </div>
+                    <div class="publication-video image-contain-wrapper">
+                      <img
+                        class="image-contain"
+                        src="static/qualitative_results/dog1_480p.jpg"
+                        alt="Input Image"
+                      />
+                    </div>
+                    <div class="prompt-text" style="margin-top: 8px">
+                      <strong>Image Prompt:</strong> "<span
+                        class="prompt-highlight-green"
+                        >A happy Akita dog with its tongue out</span
+                      >, stands in a grassy area with flowers and leaves, bathed
+                      in sunlight."
+                    </div>
+                  </div>
+                  <div class="section-image">
+                    <div class="caption" style="margin-bottom: 8px">
+                      <small><strong>Input Video</strong></small>
+                    </div>
+                    <div class="publication-video">
+                      <video
+                        poster=""
+                        id="qualitative5-input"
+                        autoplay
+                        controls
+                        muted
+                        loop
+                        height="100%"
+                        preload="metadata"
+                      >
+                        <!-- TODO: Add your video file path here -->
+                        <source
+                          src="static/qualitative_results/coach_2.mp4"
+                          type="video/mp4"
+                        />
+                      </video>
+                    </div>
+                    <div class="prompt-text" style="margin-top: 8px">
+                      <strong>Video Prompt:</strong> "A man
+                      <span class="prompt-highlight-orange"
+                        >swings in an aerial yoga hammock in a fitness studio,
+                        twisting mid-air before landing on a mat, with mirrors
+                        reflecting the scene and barrels and flowers visible in
+                        the background.</span
+                      >"
+                    </div>
+                  </div>
+                  <div class="section-image">
+                    <div class="caption" style="margin-bottom: 8px">
+                      <small><strong>BiCo (Ours)</strong></small>
+                    </div>
+                    <div class="publication-video">
+                      <video
+                        poster=""
+                        id="qualitative5-output"
+                        autoplay
+                        controls
+                        muted
+                        loop
+                        height="100%"
+                        preload="metadata"
+                      >
+                        <!-- TODO: Add your video file path here -->
+                        <source
+                          src="static/qualitative_results/yoga1_1.1.mp4"
+                          type="video/mp4"
+                        />
+                      </video>
+                    </div>
+                    <div
+                      class="prompt-text"
+                      style="margin-top: 8px; border-left-color: #9333ea"
+                    >
+                      <strong style="color: #9333ea">Composed Prompt:</strong>
+                      "<span class="prompt-highlight-green"
+                        >A happy Akita dog with its tongue out,</span
+                      >
+                      <span class="prompt-highlight-orange"
+                        >swings in an aerial yoga hammock in a fitness studio,
+                        twisting mid-air before landing on a mat, with mirrors
+                        reflecting the scene and barrels and flowers visible in
+                        the background.</span
+                      >"
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Row 6 -->
+                <div class="section">
+                  <div class="section-image">
+                    <div class="caption" style="margin-bottom: 8px">
+                      <small><strong>Input Image</strong></small>
+                    </div>
+                    <div class="publication-video image-contain-wrapper">
+                      <img
+                        class="image-contain"
+                        src="static/qualitative_results/demu1.jpeg"
+                        alt="Input Image"
+                      />
+                    </div>
+                    <div class="prompt-text" style="margin-top: 8px">
+                      <strong>Image Prompt:</strong> "A close-up of a
+                      <span class="prompt-highlight-green"
+                        >German Shepherd dog</span
+                      >
+                      outdoors, sitting on grass under natural light."
+                    </div>
+                  </div>
+                  <div class="section-image">
+                    <div class="caption" style="margin-bottom: 8px">
+                      <small><strong>Input Video</strong></small>
+                    </div>
+                    <div class="publication-video">
+                      <video
+                        poster=""
+                        id="qualitative6-input"
+                        autoplay
+                        controls
+                        muted
+                        loop
+                        height="100%"
+                        preload="metadata"
+                      >
+                        <!-- TODO: Add your video file path here -->
+                        <source
+                          src="static/qualitative_results/coach_4.mp4"
+                          type="video/mp4"
+                        />
+                      </video>
+                    </div>
+                    <div class="prompt-text" style="margin-top: 8px">
+                      <strong>Video Prompt:</strong> "A muscular man
+                      <span class="prompt-highlight-orange"
+                        >wearing a black tank top works out on fitness equipment
+                        in a gym, pulling and lifting with intensity.</span
+                      >"
+                    </div>
+                  </div>
+                  <div class="section-image">
+                    <div class="caption" style="margin-bottom: 8px">
+                      <small><strong>BiCo (Ours)</strong></small>
+                    </div>
+                    <div class="publication-video">
+                      <video
+                        poster=""
+                        id="qualitative6-output"
+                        autoplay
+                        controls
+                        muted
+                        loop
+                        height="100%"
+                        preload="metadata"
+                      >
+                        <!-- TODO: Add your video file path here -->
+                        <source
+                          src="static/qualitative_results/gym1_1.0.mp4"
+                          type="video/mp4"
+                        />
+                      </video>
+                    </div>
+                    <div
+                      class="prompt-text"
+                      style="margin-top: 8px; border-left-color: #9333ea"
+                    >
+                      <strong style="color: #9333ea">Composed Prompt:</strong>
+                      "<span class="prompt-highlight-green"
+                        >A German Shepherd dog</span
+                      >
+                      <span class="prompt-highlight-orange"
+                        >wearing a black tank top works out on fitness equipment
+                        in a gym, pulling and lifting with intensity.</span
+                      >"
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Row 7 -->
+                <div class="section">
+                  <div class="section-image">
+                    <div class="caption" style="margin-bottom: 8px">
+                      <small><strong>Input Image</strong></small>
+                    </div>
+                    <div class="publication-video image-contain-wrapper">
+                      <img
+                        class="image-contain"
+                        src="static/qualitative_results/bianmu1.jpeg"
+                        alt="Input Image"
+                      />
+                    </div>
+                    <div class="prompt-text" style="margin-top: 8px">
+                      <strong>Image Prompt:</strong> "<span
+                        class="prompt-highlight-green"
+                        >A happy dog with gray and white fur, blue eyes</span
+                      >, and a cheerful expression lies outdoors on pavement."
+                    </div>
+                  </div>
+                  <div class="section-image">
+                    <div class="caption" style="margin-bottom: 8px">
+                      <small><strong>Input Video</strong></small>
+                    </div>
+                    <div class="publication-video">
+                      <video
+                        poster=""
+                        id="qualitative7-input"
+                        autoplay
+                        controls
+                        muted
+                        loop
+                        height="100%"
+                        preload="metadata"
+                      >
+                        <!-- TODO: Add your video file path here -->
+                        <source
+                          src="static/qualitative_results/dancer_1.mp4"
+                          type="video/mp4"
+                        />
+                      </video>
+                    </div>
+                    <div class="prompt-text" style="margin-top: 8px">
+                      <strong>Video Prompt:</strong> "A man
+                      <span class="prompt-highlight-orange"
+                        >in a mint green suit and hat energetically points
+                        upward while holding a trumpet, set against the backdrop
+                        of a peach-colored building with windows.</span
+                      >"
+                    </div>
+                  </div>
+                  <div class="section-image">
+                    <div class="caption" style="margin-bottom: 8px">
+                      <small><strong>BiCo (Ours)</strong></small>
+                    </div>
+                    <div class="publication-video">
+                      <video
+                        poster=""
+                        id="qualitative7-output"
+                        autoplay
+                        controls
+                        muted
+                        loop
+                        height="100%"
+                        preload="metadata"
+                      >
+                        <!-- TODO: Add your video file path here -->
+                        <source
+                          src="static/qualitative_results/dancer1_1.0.mp4"
+                          type="video/mp4"
+                        />
+                      </video>
+                    </div>
+                    <div
+                      class="prompt-text"
+                      style="margin-top: 8px; border-left-color: #9333ea"
+                    >
+                      <strong style="color: #9333ea">Composed Prompt:</strong>
+                      "<span class="prompt-highlight-green"
+                        >A happy dog with gray and white fur, blue eyes,</span
+                      >
+                      <span class="prompt-highlight-orange"
+                        >in a mint green suit and hat energetically points
+                        upward while holding a trumpet, set against the backdrop
+                        of a peach-colored building with windows.</span
+                      >"
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Row 8 -->
+                <div class="section">
+                  <div class="section-image">
+                    <div class="caption" style="margin-bottom: 8px">
+                      <small><strong>Input Image</strong></small>
+                    </div>
+                    <div class="publication-video image-contain-wrapper">
+                      <img
+                        class="image-contain"
+                        src="static/qualitative_results/boenshan1.jpeg"
+                        alt="Input Image"
+                      />
+                    </div>
+                    <div class="prompt-text" style="margin-top: 8px">
+                      <strong>Image Prompt:</strong> "<span
+                        class="prompt-highlight-green"
+                        >A relaxed dog with a white chest and brown
+                        patches</span
+                      >
+                      lies outdoors on concrete near grass and mountains."
+                    </div>
+                  </div>
+                  <div class="section-image">
+                    <div class="caption" style="margin-bottom: 8px">
+                      <small><strong>Input Video</strong></small>
+                    </div>
+                    <div class="publication-video">
+                      <video
+                        poster=""
+                        id="qualitative8-input"
+                        autoplay
+                        controls
+                        muted
+                        loop
+                        height="100%"
+                        preload="metadata"
+                      >
+                        <!-- TODO: Add your video file path here -->
+                        <source
+                          src="static/qualitative_results/guitar_2.mp4"
+                          type="video/mp4"
+                        />
+                      </video>
+                    </div>
+                    <div class="prompt-text" style="margin-top: 8px">
+                      <strong>Video Prompt:</strong> "A man
+                      <span class="prompt-highlight-orange"
+                        >in a striped shirt and cap stands still playing a
+                        guitar against a concrete wall with yellow graffiti,
+                        while another person walks away into the distance in an
+                        underground tunnel.</span
+                      >"
+                    </div>
+                  </div>
+                  <div class="section-image">
+                    <div class="caption" style="margin-bottom: 8px">
+                      <small><strong>BiCo (Ours)</strong></small>
+                    </div>
+                    <div class="publication-video">
+                      <video
+                        poster=""
+                        id="qualitative8-output"
+                        autoplay
+                        controls
+                        muted
+                        loop
+                        height="100%"
+                        preload="metadata"
+                      >
+                        <!-- TODO: Add your video file path here -->
+                        <source
+                          src="static/qualitative_results/guitar2_1.1.mp4"
+                          type="video/mp4"
+                        />
+                      </video>
+                    </div>
+                    <div
+                      class="prompt-text"
+                      style="margin-top: 8px; border-left-color: #9333ea"
+                    >
+                      <strong style="color: #9333ea">Composed Prompt:</strong>
+                      "<span class="prompt-highlight-green"
+                        >A relaxed dog with a white chest and brown
+                        patches</span
+                      >
+                      <span class="prompt-highlight-orange"
+                        >in a striped shirt and cap stands still playing a
+                        guitar</span
+                      >
+                      with its dog's paws
+                      <span class="prompt-highlight-orange"
+                        >against a concrete wall with yellow graffiti, while
+                        another person walks away into the distance in an
+                        underground tunnel.</span
+                      >"
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Row 9 -->
+                <div class="section">
+                  <div class="section-image">
+                    <div class="caption" style="margin-bottom: 8px">
+                      <small><strong>Input Video 1</strong></small>
+                    </div>
+                    <div class="publication-video">
+                      <video
+                        poster=""
+                        id="qualitative9-input1"
+                        autoplay
+                        controls
+                        muted
+                        loop
+                        height="100%"
+                        preload="metadata"
+                      >
+                        <!-- TODO: Add your video file path here -->
+                        <source
+                          src="static/qualitative_results/guitar_2.mp4"
+                          type="video/mp4"
+                        />
+                      </video>
+                    </div>
+                    <div class="prompt-text" style="margin-top: 8px">
+                      <strong>Video Prompt:</strong> "<span
+                        class="prompt-highlight-green"
+                        >A man with long hair and beard in a striped shirt and
+                        black jeans and a cap, plays the guitar</span
+                      >
+                      against a concrete wall with yellow graffiti, while
+                      another person walks away into the distance in an
+                      underground tunnel."
+                    </div>
+                  </div>
+                  <div class="section-image">
+                    <div class="caption" style="margin-bottom: 8px">
+                      <small><strong>Input Video 2</strong></small>
+                    </div>
+                    <div class="publication-video">
+                      <video
+                        poster=""
+                        id="qualitative9-input2"
+                        autoplay
+                        controls
+                        muted
+                        loop
+                        height="100%"
+                        preload="metadata"
+                      >
+                        <!-- TODO: Add your video file path here -->
+                        <source
+                          src="static/qualitative_results/dancer_1.mp4"
+                          type="video/mp4"
+                        />
+                      </video>
+                    </div>
+                    <div class="prompt-text" style="margin-top: 8px">
+                      <strong>Video Prompt:</strong> "A
+                      <span class="prompt-highlight-orange"
+                        >man in a mint green suit and hat energetically points
+                        upward while holding a trumpet, set against the backdrop
+                        of a peach-colored building with windows.</span
+                      >"
+                    </div>
+                  </div>
+                  <div class="section-image">
+                    <div class="caption" style="margin-bottom: 8px">
+                      <small><strong>BiCo (Ours)</strong></small>
+                    </div>
+                    <div class="publication-video">
+                      <video
+                        poster=""
+                        id="qualitative9-output"
+                        autoplay
+                        controls
+                        muted
+                        loop
+                        height="100%"
+                        preload="metadata"
+                      >
+                        <!-- TODO: Add your video file path here -->
+                        <source
+                          src="static/qualitative_results/guitar2_dancer1_1.3.mp4"
+                          type="video/mp4"
+                        />
+                      </video>
+                    </div>
+                    <div
+                      class="prompt-text"
+                      style="margin-top: 8px; border-left-color: #9333ea"
+                    >
+                      <strong style="color: #9333ea">Composed Prompt:</strong>
+                      "<span class="prompt-highlight-green"
+                        >A man with long hair and beard in a striped shirt and
+                        black jeans and a cap, plays the guitar</span
+                      >, while another
+                      <span class="prompt-highlight-orange"
+                        >man in a mint green suit and hat energetically points
+                        upward while holding a trumpet, set against the backdrop
+                        of a peach-colored building with windows.</span
+                      >"
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Row 10 -->
+                <div class="section">
+                  <div class="section-image">
+                    <div class="caption" style="margin-bottom: 8px">
+                      <small><strong>Input Image 1</strong></small>
+                    </div>
+                    <div class="publication-video image-contain-wrapper">
+                      <img
+                        class="image-contain"
+                        src="static/qualitative_results/dog1_480p.jpg"
+                        alt="Input Image 1"
+                      />
+                    </div>
+                    <div class="prompt-text" style="margin-top: 8px">
+                      <strong>Image Prompt:</strong> "<span
+                        class="prompt-highlight-green"
+                        >A happy Akita dog</span
+                      >
+                      with its tongue out, stands in a grassy area with flowers
+                      and leaves, bathed in sunlight."
+                    </div>
+                  </div>
+                  <div class="section-image">
+                    <div class="caption" style="margin-bottom: 8px">
+                      <small><strong>Input Image 2</strong></small>
+                    </div>
+                    <div class="publication-video image-contain-wrapper">
+                      <img
+                        class="image-contain"
+                        src="static/qualitative_results/clothes_2.jpeg"
+                        alt="Input Image 2"
+                      />
+                    </div>
+                    <div class="prompt-text" style="margin-top: 8px">
+                      <strong>Image Prompt:</strong> "A stylish outfit featuring
+                      <span class="prompt-highlight-blue"
+                        >a tan trench coat, white pants,</span
+                      >
+                      a black bag,<span class="prompt-highlight-blue">
+                        sunglasses, a white shirt, and black shoes</span
+                      >
+                      arranged against a white background."
+                    </div>
+                  </div>
+                  <div class="section-image">
+                    <div class="caption" style="margin-bottom: 8px">
+                      <small><strong>Input Image 3</strong></small>
+                    </div>
+                    <div class="publication-video image-contain-wrapper">
+                      <img
+                        class="image-contain"
+                        src="static/qualitative_results/hat1.jpg"
+                        alt="Input Image 3"
+                      />
+                    </div>
+                    <div class="prompt-text" style="margin-top: 8px">
+                      <strong>Image Prompt:</strong> "A joyful woman wearing
+                      <span class="prompt-highlight-red"
+                        >a striped blue and white hat</span
+                      >
+                      smiles on a sunny beach with the ocean and sky in the
+                      background."
+                    </div>
+                  </div>
+                  <div class="section-image">
+                    <div class="caption" style="margin-bottom: 8px">
+                      <small><strong>Input Video</strong></small>
+                    </div>
+                    <div class="publication-video">
+                      <video
+                        poster=""
+                        id="qualitative10-input"
+                        autoplay
+                        controls
+                        muted
+                        loop
+                        height="100%"
+                        preload="metadata"
+                      >
+                        <!-- TODO: Add your video file path here -->
+                        <source
+                          src="static/qualitative_results/reading1_81.mp4"
+                          type="video/mp4"
+                        />
+                      </video>
+                    </div>
+                    <div class="prompt-text" style="margin-top: 8px">
+                      <strong>Video Prompt:</strong> "A woman
+                      <span class="prompt-highlight-orange"
+                        >sits on a wooden bench against a wooden wall, engrossed
+                        in reading a book,</span
+                      >
+                      occasionally flipping its pages and looking up
+                      thoughtfully."
+                    </div>
+                  </div>
+                  <div class="section-image">
+                    <div class="caption" style="margin-bottom: 8px">
+                      <small><strong>BiCo (Ours)</strong></small>
+                    </div>
+                    <div class="publication-video">
+                      <video
+                        poster=""
+                        id="qualitative10-output"
+                        autoplay
+                        controls
+                        muted
+                        loop
+                        height="100%"
+                        preload="metadata"
+                      >
+                        <!-- TODO: Add your video file path here -->
+                        <source
+                          src="static/qualitative_results/dog1_reading1_clothes2_hat1_1.0.mp4"
+                          type="video/mp4"
+                        />
+                      </video>
+                    </div>
+                    <div
+                      class="prompt-text"
+                      style="margin-top: 8px; border-left-color: #9333ea"
+                    >
+                      <strong style="color: #9333ea">Composed Prompt:</strong>
+                      "<span class="prompt-highlight-green"
+                        >A happy Akita dog</span
+                      >
+                      <span class="prompt-highlight-orange"
+                        >sits on a wooden bench against a wooden wall, engrossed
+                        in reading a book,</span
+                      >
+                      wearing
+                      <span class="prompt-highlight-blue"
+                        >a tan trench coat, white pants, sunglasses, a white
+                        shirt, black shoes,</span
+                      >
+                      and
+                      <span class="prompt-highlight-red"
+                        >a striped blue and white hat.</span
+                      >"
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- End qualitative -->
+
+      <!-- Comparisons -->
+      <section class="hero is-small is-light">
+        <div class="hero-body">
+          <div class="container">
+            <h2 class="title is-3">Comparisons to Prior Works</h2>
+            <div class="columns is-centered has-text-centered">
+              <div class="column is-four-fifths">
+                <!-- Example 1 -->
+                <div class="comparison-example">
+                  <!-- Row 1: Input Image, Input Video, Ours -->
+                  <div class="section">
+                    <!-- Input Image -->
+                    <div class="section-image">
+                      <div class="caption" style="margin-bottom: 8px">
+                        <small><strong>Input Image</strong></small>
+                      </div>
+                      <div class="publication-video">
+                        <!-- TODO: Replace with your input image -->
+                        <img
+                          src="static/images/monkey1.jpg"
+                          alt="Input Image"
+                        />
+                      </div>
+                      <div class="prompt-text" style="margin-top: 8px">
+                        <strong>Image Prompt:</strong> "<span
+                          class="prompt-highlight-green"
+                          >A young monkey</span
+                        >
+                        perches on a tree branch surrounded by lush green leaves
+                        in a forest setting."
+                      </div>
+                    </div>
+                    <!-- Input Video -->
+                    <div class="section-image">
+                      <div class="caption" style="margin-bottom: 8px">
+                        <small><strong>Input Video</strong></small>
+                      </div>
+                      <div class="publication-video">
+                        <!-- TODO: Replace with your input video -->
+                        <video
+                          poster=""
+                          id="comparison3-input"
+                          autoplay
+                          controls
+                          muted
+                          loop
+                          height="100%"
+                          preload="metadata"
+                        >
+                          <source
+                            src="static/videos/woman_earphone_81.mp4"
+                            type="video/mp4"
+                          />
+                        </video>
+                      </div>
+                      <div class="prompt-text" style="margin-top: 8px">
+                        <strong>Video Prompt:</strong> "A woman
+                        <span class="prompt-highlight-orange"
+                          >in a black coat stands in a forest, putting on her
+                          headphones as</span
+                        >
+                        she
+                        <span class="prompt-highlight-orange"
+                          >looks around at fallen leaves covering the
+                          ground</span
+                        >."
+                      </div>
+                    </div>
+                    <!-- Ours (BiCo) -->
+                    <div class="section-image">
+                      <div class="caption" style="margin-bottom: 8px">
+                        <small><strong>BiCo (Ours)</strong></small>
+                      </div>
+                      <div class="publication-video">
+                        <!-- TODO: Replace with your method's result video -->
+                        <video
+                          poster=""
+                          id="comparison3-ours"
+                          autoplay
+                          controls
+                          muted
+                          loop
+                          height="100%"
+                          preload="metadata"
+                        >
+                          <source
+                            src="static/videos/monkey_earphone_ours.mp4"
+                            type="video/mp4"
+                          />
+                        </video>
+                      </div>
+                      <div
+                        class="prompt-text"
+                        style="margin-top: 8px; border-left-color: #9333ea"
+                      >
+                        <strong style="color: #9333ea">Composed Prompt:</strong>
+                        "<span class="prompt-highlight-green"
+                          >A young monkey</span
+                        >
+                        with no hair
+                        <span class="prompt-highlight-orange"
+                          >in a black coat stands in a forest, putting on its
+                          headphones as</span
+                        >
+                        it
+                        <span class="prompt-highlight-orange"
+                          >looks around at fallen leaves covering the
+                          ground</span
+                        >."
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Row 2: 4 Baselines -->
+                  <div class="section">
+                    <!-- Baseline 1 -->
+                    <div class="section-image">
+                      <div class="caption" style="margin-bottom: 8px">
+                        <small><strong>Text-Inv</strong></small>
+                      </div>
+                      <div class="publication-video">
+                        <!-- TODO: Replace with Baseline 1 result video -->
+                        <video
+                          poster=""
+                          id="comparison3-baseline1"
+                          autoplay
+                          controls
+                          muted
+                          loop
+                          height="100%"
+                          preload="metadata"
+                        >
+                          <source
+                            src="static/videos/monkey_earphone_inv.mp4"
+                            type="video/mp4"
+                          />
+                        </video>
+                      </div>
+                    </div>
+                    <!-- Baseline 2 -->
+                    <div class="section-image">
+                      <div class="caption" style="margin-bottom: 8px">
+                        <small><strong>DB-LoRA</strong></small>
+                      </div>
+                      <div class="publication-video">
+                        <!-- TODO: Replace with Baseline 2 result video -->
+                        <video
+                          poster=""
+                          id="comparison3-baseline2"
+                          autoplay
+                          controls
+                          muted
+                          loop
+                          height="100%"
+                          preload="metadata"
+                        >
+                          <source
+                            src="static/videos/monkey_earphone_lora.mp4"
+                            type="video/mp4"
+                          />
+                        </video>
+                      </div>
+                    </div>
+                    <!-- Baseline 3 -->
+                    <div class="section-image">
+                      <div class="caption" style="margin-bottom: 8px">
+                        <small><strong>DreamVideo</strong></small>
+                      </div>
+                      <div class="publication-video">
+                        <!-- TODO: Replace with Baseline 3 result video -->
+                        <video
+                          poster=""
+                          id="comparison3-baseline3"
+                          autoplay
+                          controls
+                          muted
+                          loop
+                          height="100%"
+                          preload="metadata"
+                        >
+                          <source
+                            src="static/videos/monkey_earphone_dream.mp4"
+                            type="video/mp4"
+                          />
+                        </video>
+                      </div>
+                    </div>
+                    <!-- Baseline 4 -->
+                    <div class="section-image">
+                      <div class="caption" style="margin-bottom: 8px">
+                        <small><strong>DualReal</strong></small>
+                      </div>
+                      <div class="publication-video">
+                        <!-- TODO: Replace with Baseline 4 result video -->
+                        <video
+                          poster=""
+                          id="comparison3-baseline4"
+                          autoplay
+                          controls
+                          muted
+                          loop
+                          height="100%"
+                          preload="metadata"
+                        >
+                          <source
+                            src="static/videos/monkey_earphone_dual.mp4"
+                            type="video/mp4"
+                          />
+                        </video>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Divider between examples -->
+                <hr class="comparison-divider" />
+
+                <!-- Example 2 -->
+                <div class="comparison-example">
+                  <!-- Row 1: Input Image, Input Video, Ours -->
+                  <div class="section">
+                    <!-- Input Image -->
+                    <div class="section-image">
+                      <div class="caption" style="margin-bottom: 8px">
+                        <small><strong>Input Image</strong></small>
+                      </div>
+                      <div class="publication-video">
+                        <!-- TODO: Replace with your input image -->
+                        <img
+                          src="static/images/elephant1.jpg"
+                          alt="Input Image"
+                        />
+                      </div>
+                      <div class="prompt-text" style="margin-top: 8px">
+                        <strong>Image Prompt:</strong> "<span
+                          class="prompt-highlight-green"
+                          >An elephant</span
+                        >
+                        stands near water at sunset, with trees and dirt in the
+                        background."
+                      </div>
+                    </div>
+                    <!-- Input Video -->
+                    <div class="section-image">
+                      <div class="caption" style="margin-bottom: 8px">
+                        <small><strong>Input Video</strong></small>
+                      </div>
+                      <div class="publication-video">
+                        <!-- TODO: Replace with your input video -->
+                        <video
+                          poster=""
+                          id="comparison2-input"
+                          autoplay
+                          controls
+                          muted
+                          loop
+                          height="100%"
+                          preload="metadata"
+                        >
+                          <source
+                            src="static/videos/tortoise_81.mp4"
+                            type="video/mp4"
+                          />
+                        </video>
+                      </div>
+                      <div class="prompt-text" style="margin-top: 8px">
+                        <strong>Video Prompt:</strong> "A turtle
+                        <span class="prompt-highlight-blue"
+                          >swims gracefully through the blue ocean, bubbles
+                          rising around it as it glides underwater.</span
+                        >"
+                      </div>
+                    </div>
+                    <!-- Ours (BiCo) -->
+                    <div class="section-image">
+                      <div class="caption" style="margin-bottom: 8px">
+                        <small><strong>BiCo (Ours)</strong></small>
+                      </div>
+                      <div class="publication-video">
+                        <!-- TODO: Replace with your method's result video -->
+                        <video
+                          poster=""
+                          id="comparison2-ours"
+                          autoplay
+                          controls
+                          muted
+                          loop
+                          height="100%"
+                          preload="metadata"
+                        >
+                          <source
+                            src="static/videos/elephant_swimming_ours.mp4"
+                            type="video/mp4"
+                          />
+                        </video>
+                      </div>
+                      <div
+                        class="prompt-text"
+                        style="margin-top: 8px; border-left-color: #9333ea"
+                      >
+                        <strong style="color: #9333ea">Composed Prompt:</strong>
+                        "<span class="prompt-highlight-green">An elephant</span>
+                        <span class="prompt-highlight-blue"
+                          >swims gracefully through the blue ocean, bubbles
+                          rising around it as it glides underwater.</span
+                        >"
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Row 2: 4 Baselines -->
+                  <div class="section">
+                    <!-- Baseline 1 -->
+                    <div class="section-image">
+                      <div class="caption" style="margin-bottom: 8px">
+                        <small><strong>Text-Inv</strong></small>
+                      </div>
+                      <div class="publication-video">
+                        <!-- TODO: Replace with Baseline 1 result video -->
+                        <video
+                          poster=""
+                          id="comparison2-baseline1"
+                          autoplay
+                          controls
+                          muted
+                          loop
+                          height="100%"
+                          preload="metadata"
+                        >
+                          <source
+                            src="static/videos/elephant_swimming_inv.mp4"
+                            type="video/mp4"
+                          />
+                        </video>
+                      </div>
+                    </div>
+                    <!-- Baseline 2 -->
+                    <div class="section-image">
+                      <div class="caption" style="margin-bottom: 8px">
+                        <small><strong>DB-LoRA</strong></small>
+                      </div>
+                      <div class="publication-video">
+                        <!-- TODO: Replace with Baseline 2 result video -->
+                        <video
+                          poster=""
+                          id="comparison2-baseline2"
+                          autoplay
+                          controls
+                          muted
+                          loop
+                          height="100%"
+                          preload="metadata"
+                        >
+                          <source
+                            src="static/videos/elephant_swimming_lora.mp4"
+                            type="video/mp4"
+                          />
+                        </video>
+                      </div>
+                    </div>
+                    <!-- Baseline 3 -->
+                    <div class="section-image">
+                      <div class="caption" style="margin-bottom: 8px">
+                        <small><strong>DreamVideo</strong></small>
+                      </div>
+                      <div class="publication-video">
+                        <!-- TODO: Replace with Baseline 3 result video -->
+                        <video
+                          poster=""
+                          id="comparison2-baseline3"
+                          autoplay
+                          controls
+                          muted
+                          loop
+                          height="100%"
+                          preload="metadata"
+                        >
+                          <source
+                            src="static/videos/elephant_swimming_dream.mp4"
+                            type="video/mp4"
+                          />
+                        </video>
+                      </div>
+                    </div>
+                    <!-- Baseline 4 -->
+                    <div class="section-image">
+                      <div class="caption" style="margin-bottom: 8px">
+                        <small><strong>DualReal</strong></small>
+                      </div>
+                      <div class="publication-video">
+                        <!-- TODO: Replace with Baseline 4 result video -->
+                        <video
+                          poster=""
+                          id="comparison2-baseline4"
+                          autoplay
+                          controls
+                          muted
+                          loop
+                          height="100%"
+                          preload="metadata"
+                        >
+                          <source
+                            src="static/videos/elephant_swimming_dualreal.mp4"
+                            type="video/mp4"
+                          />
+                        </video>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Divider between examples -->
+                <hr class="comparison-divider" />
+
+                <!-- Example 3 -->
+                <div class="comparison-example">
+                  <!-- Row 1: Input Image, Input Video, Ours -->
+                  <div class="section">
+                    <!-- Input Image -->
+                    <div class="section-image">
+                      <div class="caption" style="margin-bottom: 8px">
+                        <small><strong>Input Image</strong></small>
+                      </div>
+                      <div class="publication-video">
+                        <!-- TODO: Replace with your input image -->
+                        <img
+                          src="static/images/monkey1.jpg"
+                          alt="Input Image"
+                        />
+                      </div>
+                      <div class="prompt-text" style="margin-top: 8px">
+                        <strong>Image Prompt:</strong> "<span
+                          class="prompt-highlight-green"
+                          >A young monkey</span
+                        >
+                        perches on a tree branch surrounded by lush green leaves
+                        in a forest setting."
+                      </div>
+                    </div>
+                    <!-- Input Video -->
+                    <div class="section-image">
+                      <div class="caption" style="margin-bottom: 8px">
+                        <small><strong>Input Video</strong></small>
+                      </div>
+                      <div class="publication-video">
+                        <!-- TODO: Replace with your input video -->
+                        <video
+                          poster=""
+                          id="comparison1-input"
+                          autoplay
+                          controls
+                          muted
+                          loop
+                          height="100%"
+                          preload="metadata"
+                        >
+                          <source
+                            src="static/videos/squirrel.mp4"
+                            type="video/mp4"
+                          />
+                        </video>
+                      </div>
+                      <div class="prompt-text" style="margin-top: 8px">
+                        <strong>Video Prompt:</strong> "A squirrel
+                        <span class="prompt-highlight-orange"
+                          >sits on dirt, nibbling on something while bathed in
+                          sunlight</span
+                        >, with its tail curled behind it."
+                      </div>
+                    </div>
+                    <!-- Ours (BiCo) -->
+                    <div class="section-image">
+                      <div class="caption" style="margin-bottom: 8px">
+                        <small><strong>BiCo (Ours)</strong></small>
+                      </div>
+                      <div class="publication-video">
+                        <!-- TODO: Replace with your method's result video -->
+                        <video
+                          poster=""
+                          id="comparison1-ours"
+                          autoplay
+                          controls
+                          muted
+                          loop
+                          height="100%"
+                          preload="metadata"
+                        >
+                          <source
+                            src="static/videos/monkey_nibbling_1.1.mp4"
+                            type="video/mp4"
+                          />
+                        </video>
+                      </div>
+                      <div
+                        class="prompt-text"
+                        style="margin-top: 8px; border-left-color: #9333ea"
+                      >
+                        <strong style="color: #9333ea">Composed Prompt:</strong>
+                        "<span class="prompt-highlight-green"
+                          >A young monkey</span
+                        >
+                        <span class="prompt-highlight-orange"
+                          >sits on dirt, nibbling on something while bathed in
+                          sunlight</span
+                        >."
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Row 2: 4 Baselines -->
+                  <div class="section">
+                    <!-- Baseline 1 -->
+                    <div class="section-image">
+                      <div class="caption" style="margin-bottom: 8px">
+                        <small><strong>Text-Inv</strong></small>
+                      </div>
+                      <div class="publication-video">
+                        <!-- TODO: Replace with Baseline 1 result video -->
+                        <video
+                          poster=""
+                          id="comparison1-baseline1"
+                          autoplay
+                          controls
+                          muted
+                          loop
+                          height="100%"
+                          preload="metadata"
+                        >
+                          <source
+                            src="static/videos/monkey_nibbling_inv.mp4"
+                            type="video/mp4"
+                          />
+                        </video>
+                      </div>
+                    </div>
+                    <!-- Baseline 2 -->
+                    <div class="section-image">
+                      <div class="caption" style="margin-bottom: 8px">
+                        <small><strong>DB-LoRA</strong></small>
+                      </div>
+                      <div class="publication-video">
+                        <!-- TODO: Replace with Baseline 2 result video -->
+                        <video
+                          poster=""
+                          id="comparison1-baseline2"
+                          autoplay
+                          controls
+                          muted
+                          loop
+                          height="100%"
+                          preload="metadata"
+                        >
+                          <source
+                            src="static/videos/monkey_nibbling_lora.mp4"
+                            type="video/mp4"
+                          />
+                        </video>
+                      </div>
+                    </div>
+                    <!-- Baseline 3 -->
+                    <div class="section-image">
+                      <div class="caption" style="margin-bottom: 8px">
+                        <small><strong>DreamVideo</strong></small>
+                      </div>
+                      <div class="publication-video">
+                        <!-- TODO: Replace with Baseline 3 result video -->
+                        <video
+                          poster=""
+                          id="comparison1-baseline3"
+                          autoplay
+                          controls
+                          muted
+                          loop
+                          height="100%"
+                          preload="metadata"
+                        >
+                          <source
+                            src="static/videos/monkey_nibbling_dreamvideo.mp4"
+                            type="video/mp4"
+                          />
+                        </video>
+                      </div>
+                    </div>
+                    <!-- Baseline 4 -->
+                    <div class="section-image">
+                      <div class="caption" style="margin-bottom: 8px">
+                        <small><strong>DualReal</strong></small>
+                      </div>
+                      <div class="publication-video">
+                        <!-- TODO: Replace with Baseline 4 result video -->
+                        <video
+                          poster=""
+                          id="comparison1-baseline4"
+                          autoplay
+                          controls
+                          muted
+                          loop
+                          height="100%"
+                          preload="metadata"
+                        >
+                          <source
+                            src="static/videos/monkey_nibbling_dualreal.mp4"
+                            type="video/mp4"
+                          />
+                        </video>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- End comparisons -->
+
+      <!-- Case studies / Ablation Studies -->
+      <section class="hero is-small">
+        <div class="hero-body">
+          <div class="container">
+            <h2 class="title is-3">Case Studies</h2>
+            <div class="columns is-centered has-text-centered">
+              <div class="column is-four-fifths">
+                <!-- Row 1: Input Image, Input Video, Ours -->
+                <div class="section">
+                  <!-- Input Image -->
+                  <div class="section-image">
+                    <div class="caption" style="margin-bottom: 8px">
+                      <small><strong>Input Image</strong></small>
+                    </div>
+                    <div class="publication-video">
+                      <!-- TODO: Replace with your input image -->
+                      <img
+                        src="static/images/starry_night.jpeg"
+                        alt="Input Image"
+                      />
+                    </div>
+                    <div class="prompt-text" style="margin-top: 8px">
+                      <strong>Image Prompt:</strong> "<span
+                        class="prompt-highlight-orange"
+                        >A pixel art interpretation of The Starry Night by
+                        Vincent van Gogh, featuring</span
+                      >
+                      a night sky filled with stars and a crescent moon, set
+                      against a cityscape with a prominent building silhouette."
+                    </div>
+                  </div>
+                  <!-- Input Video -->
+                  <div class="section-image">
+                    <div class="caption" style="margin-bottom: 8px">
+                      <small><strong>Input Video</strong></small>
+                    </div>
+                    <div class="publication-video">
+                      <!-- TODO: Replace with your input video -->
+                      <video
+                        poster=""
+                        id="ablation2-input"
+                        autoplay
+                        controls
+                        muted
+                        loop
+                        height="100%"
+                        preload="metadata"
+                      >
+                        <source
+                          src="static/videos/eagle_original.mp4"
+                          type="video/mp4"
+                        />
+                      </video>
+                    </div>
+                    <div class="prompt-text" style="margin-top: 8px">
+                      <strong>Video Prompt:</strong> "<span
+                        class="prompt-highlight-blue"
+                        >A bird soars gracefully</span
+                      >
+                      through a clear blue sky."
+                    </div>
+                  </div>
+                  <!-- Ours (BiCo) -->
+                  <div class="section-image">
+                    <div class="caption" style="margin-bottom: 8px">
+                      <small><strong>BiCo (Ours)</strong></small>
+                    </div>
+                    <div class="publication-video">
+                      <!-- TODO: Replace with your method's result video -->
+                      <video
+                        poster=""
+                        id="ablation2-ours"
+                        autoplay
+                        controls
+                        muted
+                        loop
+                        height="100%"
+                        preload="metadata"
+                      >
+                        <source
+                          src="static/videos/pixelart_eagle_1.5.mp4"
+                          type="video/mp4"
+                        />
+                      </video>
+                    </div>
+                    <div
+                      class="prompt-text"
+                      style="margin-top: 8px; border-left-color: #9333ea"
+                    >
+                      <strong style="color: #9333ea">Composed Prompt:</strong>
+                      "<span class="prompt-highlight-orange"
+                        >A pixel art interpretation of The Starry Night by
+                        Vincent van Gogh, featuring</span
+                      >
+                      <span class="prompt-highlight-blue"
+                        >a bird soars gracefully</span
+                      >."
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Row 2: Ablation Results 1-3 -->
+                <div class="section">
+                  <!-- Ablation 1 -->
+                  <div class="section-image">
+                    <div class="caption" style="margin-bottom: 8px">
+                      <small><strong>Baseline</strong></small>
+                    </div>
+                    <div class="publication-video">
+                      <!-- TODO: Replace with ablation 1 result video -->
+                      <video
+                        poster=""
+                        id="ablation2-1"
+                        autoplay
+                        controls
+                        muted
+                        loop
+                        height="100%"
+                        preload="metadata"
+                      >
+                        <source
+                          src="static/videos/pixelart_eagle_baseline.mp4"
+                          type="video/mp4"
+                        />
+                      </video>
+                    </div>
+                  </div>
+                  <!-- Ablation 2 -->
+                  <div class="section-image">
+                    <div class="caption" style="margin-bottom: 8px">
+                      <small><strong>Baseline + Hierarchical</strong></small>
+                    </div>
+                    <div class="publication-video">
+                      <!-- TODO: Replace with ablation 2 result video -->
+                      <video
+                        poster=""
+                        id="ablation2-2"
+                        autoplay
+                        controls
+                        muted
+                        loop
+                        height="100%"
+                        preload="metadata"
+                      >
+                        <source
+                          src="static/videos/pixelart_eagle_case22.mp4"
+                          type="video/mp4"
+                        />
+                      </video>
+                    </div>
+                  </div>
+                  <!-- Ablation 3 -->
+                  <div class="section-image">
+                    <div class="caption" style="margin-bottom: 8px">
+                      <small
+                        ><strong
+                          >Baseline + Hierarchical + Diversification</strong
+                        ></small
+                      >
+                    </div>
+                    <div class="publication-video">
+                      <!-- TODO: Replace with ablation 3 result video -->
+                      <video
+                        poster=""
+                        id="ablation2-3"
+                        autoplay
+                        controls
+                        muted
+                        loop
+                        height="100%"
+                        preload="metadata"
+                      >
+                        <source
+                          src="static/videos/pixelart_eagle_case23.mp4"
+                          type="video/mp4"
+                        />
+                      </video>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Row 3: Ablation Results 4-6 -->
+                <div class="section">
+                  <!-- Ablation 4 -->
+                  <div class="section-image">
+                    <div class="caption" style="margin-bottom: 8px">
+                      <small
+                        ><strong
+                          >Baseline + Hierarchical + Diversification +
+                          Absorbing</strong
+                        ></small
+                      >
+                    </div>
+                    <div class="publication-video">
+                      <!-- TODO: Replace with ablation 4 result video -->
+                      <video
+                        poster=""
+                        id="ablation2-4"
+                        autoplay
+                        controls
+                        muted
+                        loop
+                        height="100%"
+                        preload="metadata"
+                      >
+                        <source
+                          src="static/videos/pixelart_eagle_case31.mp4"
+                          type="video/mp4"
+                        />
+                      </video>
+                    </div>
+                  </div>
+                  <!-- Ablation 5 -->
+                  <div class="section-image">
+                    <div class="caption" style="margin-bottom: 8px">
+                      <small
+                        ><strong
+                          >Baseline + Hierarchical + Diversification + TDS
+                          <br /><br /></strong
+                      ></small>
+                    </div>
+                    <div class="publication-video">
+                      <!-- TODO: Replace with ablation 5 result video -->
+                      <video
+                        poster=""
+                        id="ablation2-5"
+                        autoplay
+                        controls
+                        muted
+                        loop
+                        height="100%"
+                        preload="metadata"
+                      >
+                        <source
+                          src="static/videos/pixelart_eagle_case32.mp4"
+                          type="video/mp4"
+                        />
+                      </video>
+                    </div>
+                  </div>
+                  <!-- Ablation 6 -->
+                  <div class="section-image">
+                    <div class="caption" style="margin-bottom: 8px">
+                      <small
+                        ><strong
+                          >Baseline + Hierarchical (w/o two-stage inverted
+                          training) + Diversification + Absorbing + TDS</strong
+                        ></small
+                      >
+                    </div>
+                    <div class="publication-video">
+                      <!-- TODO: Replace with ablation 6 result video -->
+                      <video
+                        poster=""
+                        id="ablation2-6"
+                        autoplay
+                        controls
+                        muted
+                        loop
+                        height="100%"
+                        preload="metadata"
+                      >
+                        <source
+                          src="static/videos/pixelart_eagle_case33.mp4"
+                          type="video/mp4"
+                        />
+                      </video>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Divider between examples -->
+                <hr class="comparison-divider" />
+
+                <!-- Example 2 -->
+                <!-- Row 1: Input Image, Input Video, Ours -->
+                <div class="section">
+                  <!-- Input Image -->
+                  <div class="section-image">
+                    <div class="caption" style="margin-bottom: 8px">
+                      <small><strong>Input Image</strong></small>
+                    </div>
+                    <div class="publication-video">
+                      <!-- TODO: Replace with your input image -->
+                      <img
+                        src="static/images/elephant1.jpg"
+                        alt="Input Image"
+                      />
+                    </div>
+                    <div class="prompt-text" style="margin-top: 8px">
+                      <strong>Image Prompt:</strong> "<span
+                        class="prompt-highlight-orange"
+                        >An elephant</span
+                      >
+                      stands near water at sunset, with trees and dirt in the
+                      background."
+                    </div>
+                  </div>
+                  <!-- Input Video -->
+                  <div class="section-image">
+                    <div class="caption" style="margin-bottom: 8px">
+                      <small><strong>Input Video</strong></small>
+                    </div>
+                    <div class="publication-video">
+                      <!-- TODO: Replace with your input video -->
+                      <video
+                        poster=""
+                        id="ablation-input"
+                        autoplay
+                        controls
+                        muted
+                        loop
+                        height="100%"
+                        preload="metadata"
+                      >
+                        <source src="static/videos/bear.mp4" type="video/mp4" />
+                      </video>
+                    </div>
+                    <div class="prompt-text" style="margin-top: 8px">
+                      <strong>Video Prompt:</strong> "A brown bear
+                      <span class="prompt-highlight-green"
+                        >walks along a rocky terrain, surrounded by a stone wall
+                        and green foliage, exploring its surroundings</span
+                      >."
+                    </div>
+                  </div>
+                  <!-- Ours (BiCo) -->
+                  <div class="section-image">
+                    <div class="caption" style="margin-bottom: 8px">
+                      <small><strong>BiCo (Ours)</strong></small>
+                    </div>
+                    <div class="publication-video">
+                      <!-- TODO: Replace with your method's result video -->
+                      <video
+                        poster=""
+                        id="ablation-ours"
+                        autoplay
+                        controls
+                        muted
+                        loop
+                        height="100%"
+                        preload="metadata"
+                      >
+                        <source
+                          src="static/videos/elephant_bear_ours.mp4"
+                          type="video/mp4"
+                        />
+                      </video>
+                    </div>
+                    <div
+                      class="prompt-text"
+                      style="margin-top: 8px; border-left-color: #9333ea"
+                    >
+                      <strong style="color: #9333ea">Composed Prompt:</strong>
+                      "<span class="prompt-highlight-orange">An elephant</span>
+                      <span class="prompt-highlight-green"
+                        >walks along a rocky terrain, surrounded by a stone wall
+                        and green foliage, exploring its surroundings</span
+                      >."
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Row 2: Ablation Results 1-3 -->
+                <div class="section">
+                  <!-- Ablation 1 -->
+                  <div class="section-image">
+                    <div class="caption" style="margin-bottom: 8px">
+                      <small><strong>Baseline</strong></small>
+                    </div>
+                    <div class="publication-video">
+                      <!-- TODO: Replace with ablation 1 result video -->
+                      <video
+                        poster=""
+                        id="ablation1"
+                        autoplay
+                        controls
+                        muted
+                        loop
+                        height="100%"
+                        preload="metadata"
+                      >
+                        <source
+                          src="static/videos/elephant_bear_baseline.mp4"
+                          type="video/mp4"
+                        />
+                      </video>
+                    </div>
+                  </div>
+                  <!-- Ablation 2 -->
+                  <div class="section-image">
+                    <div class="caption" style="margin-bottom: 8px">
+                      <small><strong>Baseline + Hierarchical</strong></small>
+                    </div>
+                    <div class="publication-video">
+                      <!-- TODO: Replace with ablation 2 result video -->
+                      <video
+                        poster=""
+                        id="ablation2"
+                        autoplay
+                        controls
+                        muted
+                        loop
+                        height="100%"
+                        preload="metadata"
+                      >
+                        <source
+                          src="static/videos/elephant_bear_case22.mp4"
+                          type="video/mp4"
+                        />
+                      </video>
+                    </div>
+                  </div>
+                  <!-- Ablation 3 -->
+                  <div class="section-image">
+                    <div class="caption" style="margin-bottom: 8px">
+                      <small
+                        ><strong
+                          >Baseline + Hierarchical + Diversification</strong
+                        ></small
+                      >
+                    </div>
+                    <div class="publication-video">
+                      <!-- TODO: Replace with ablation 3 result video -->
+                      <video
+                        poster=""
+                        id="ablation3"
+                        autoplay
+                        controls
+                        muted
+                        loop
+                        height="100%"
+                        preload="metadata"
+                      >
+                        <source
+                          src="static/videos/elephant_bear_case23.mp4"
+                          type="video/mp4"
+                        />
+                      </video>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Row 3: Ablation Results 4-6 -->
+                <div class="section">
+                  <!-- Ablation 4 -->
+                  <div class="section-image">
+                    <div class="caption" style="margin-bottom: 8px">
+                      <small
+                        ><strong
+                          >Baseline + Hierarchical + Diversification +
+                          Absorbing</strong
+                        ></small
+                      >
+                    </div>
+                    <div class="publication-video">
+                      <!-- TODO: Replace with ablation 4 result video -->
+                      <video
+                        poster=""
+                        id="ablation4"
+                        autoplay
+                        controls
+                        muted
+                        loop
+                        height="100%"
+                        preload="metadata"
+                      >
+                        <source
+                          src="static/videos/elephant_bear_case31.mp4"
+                          type="video/mp4"
+                        />
+                      </video>
+                    </div>
+                  </div>
+                  <!-- Ablation 5 -->
+                  <div class="section-image">
+                    <div class="caption" style="margin-bottom: 8px">
+                      <small
+                        ><strong
+                          >Baseline + Hierarchical + Diversification + TDS
+                          <br /><br /></strong
+                      ></small>
+                    </div>
+                    <div class="publication-video">
+                      <!-- TODO: Replace with ablation 5 result video -->
+                      <video
+                        poster=""
+                        id="ablation5"
+                        autoplay
+                        controls
+                        muted
+                        loop
+                        height="100%"
+                        preload="metadata"
+                      >
+                        <source
+                          src="static/videos/elephant_bear_case32.mp4"
+                          type="video/mp4"
+                        />
+                      </video>
+                    </div>
+                  </div>
+                  <!-- Ablation 6 -->
+                  <div class="section-image">
+                    <div class="caption" style="margin-bottom: 8px">
+                      <small
+                        ><strong
+                          >Baseline + Hierarchical (w/o two-stage inverted
+                          training) + Diversification + Absorbing + TDS</strong
+                        ></small
+                      >
+                    </div>
+                    <div class="publication-video">
+                      <!-- TODO: Replace with ablation 6 result video -->
+                      <video
+                        poster=""
+                        id="ablation6"
+                        autoplay
+                        controls
+                        muted
+                        loop
+                        height="100%"
+                        preload="metadata"
+                      >
+                        <source
+                          src="static/videos/elephant_bear_test_case33.mp4"
+                          type="video/mp4"
+                        />
+                      </video>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- End case studies -->
+
+      <!-- Paper -->
+      <section class="hero is-small is-light">
+        <div class="hero-body">
+          <div class="container">
+            <h2 class="title">Paper</h2>
+
+            <!-- TODO: Replace with your paper PDF -->
+            <iframe src="static/pdfs/paper.pdf" width="100%" height="550">
+            </iframe>
+          </div>
+        </div>
+      </section>
+      <!--End paper poster -->
+
+      <!--BibTex citation -->
+      <section class="section" id="BibTeX">
+        <div class="container is-max-desktop content">
+          <div class="bibtex-header">
+            <h2 class="title">BibTeX</h2>
+            <button
+              class="copy-bibtex-btn"
+              onclick="copyBibTeX()"
+              title="Copy BibTeX to clipboard"
+            >
+              <i class="fas fa-copy"></i>
+              <span class="copy-text">Copy</span>
+            </button>
+          </div>
+          <pre id="bibtex-code"><code>TBD</code></pre>
+        </div>
+      </section>
+      <!--End BibTex citation -->
+
+      <footer class="footer">
+        <div class="container">
+          <div class="columns is-centered">
+            <div class="column is-8">
+              <div class="content">
+                <p>
+                  This page was built using the
+                  <a
+                    href="https://github.com/eliahuhorwitz/Academic-project-page-template"
+                    target="_blank"
+                    >Academic Project Page Template</a
+                  >
+                  which was adopted from the <a
+                    href="https://nerfies.github.io"
+                    target="_blank"
+                    >Nerfies</a
+                  > project page. You are free to borrow the source code of this
+                  website, we just ask that you link back to this page in the
+                  footer. <br />
+                  This website is licensed under a
+                  <a
+                    rel="license"
+                    href="http://creativecommons.org/licenses/by-sa/4.0/"
+                    target="_blank"
+                    >Creative Commons Attribution-ShareAlike 4.0 International
+                    License</a
+                  >.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+      <!-- Statcounter tracking code -->
+
+      <!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+      <!-- End of Statcounter Code -->
+    </main>
+  </body>
+</html>
